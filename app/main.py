@@ -13,7 +13,15 @@ from app import crud, models, schemas, database, config
 
 # --- App, Middleware, Static Files, Templates (Unchanged) ---
 app = FastAPI(title="QR Vehicle Status System")
-origins = ["*"]
+app = FastAPI(title="QR Vehicle Status System")
+
+# ✅ CORS FIX: Allow Netlify Frontend
+origins = [
+    "https://pmsx.netlify.app",  # Your frontend
+    "http://localhost:3000",      # Allow local development
+    "*",  # Optional: Allow all (remove this if unnecessary)
+]
+
 app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.mount(config.QR_CODE_URL_PATH, StaticFiles(directory=config.QR_CODE_DIR), name="qrcodes")
