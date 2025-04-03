@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusCheckStatus = document.getElementById('status-check-status');
 
     // API Base URL
-    const API_BASE_URL = "http://127.0.0.1:8000/api"; // Adjust if needed
+    const API_BASE_URL = "https://initial-project-production.up.railway.app/api"; // Adjust if needed
 
     // --- State Variables ---
     let scannedQrForCheckin = null;
