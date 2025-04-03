@@ -18,6 +18,15 @@ app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.mount(config.QR_CODE_URL_PATH, StaticFiles(directory=config.QR_CODE_DIR), name="qrcodes")
 templates = Jinja2Templates(directory="templates")
+# Create the directory if it doesn't exist
+QR_CODE_DIR = "qrcodes"
+if not os.path.exists(QR_CODE_DIR):
+    os.makedirs(QR_CODE_DIR)
+
+app = FastAPI()
+
+# Mount the directory for QR code storage
+app.mount("/qrcodes", StaticFiles(directory=QR_CODE_DIR), name="qrcodes")
 
 # --- Database Initialization (Unchanged) ---
 @app.on_event("startup")
