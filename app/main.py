@@ -22,7 +22,7 @@ origins = [
     "*",  # Optional: Allow all (remove this if unnecessary)
 ]
 
-app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.mount(config.QR_CODE_URL_PATH, StaticFiles(directory=config.QR_CODE_DIR), name="qrcodes")
 templates = Jinja2Templates(directory="templates")
